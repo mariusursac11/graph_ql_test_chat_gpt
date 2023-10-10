@@ -1,0 +1,79 @@
+query booksId($id: ID) {
+    bookById(id: $id) {
+        id
+        name
+        pageCount
+        author {
+            id
+            firstName
+            lastName
+        }
+    }
+}
+
+query booksIds($ids: [ID]) {
+    booksByIds(ids: $ids) {
+        id
+        name
+        pageCount
+        author {
+            id
+            firstName
+            lastName
+        }
+    }
+}
+
+query bookName($name: String) {
+    bookByName(name: $name) {
+        id
+        name
+        pageCount
+        author {
+            id
+            firstName
+            lastName
+        }
+    }
+}
+
+query booksByAuthorId($authorId: ID!) {
+    booksByAuthorId(authorId: $authorId) {
+        id
+        name
+        pageCount
+    }
+}
+
+query booksOrderByPageCount($orderBy: OrderByInput) {
+    booksOrderByPageCount(orderBy: $orderBy) {
+        id
+        name
+        pageCount
+        author {
+            id
+            firstName
+            lastName
+        }
+    }
+}
+
+query getBooks($page: Int!, $size: Int!) {
+    getBooks(page: $page, size: $size) {
+        content {
+            id
+            name
+            pageCount
+            author {
+                id
+                firstName
+                lastName
+            }
+        }
+        pageInfo {
+            currentPage
+            totalPages
+            totalItems
+        }
+    }
+}

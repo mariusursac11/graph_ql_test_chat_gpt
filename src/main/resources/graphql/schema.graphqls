@@ -1,0 +1,51 @@
+type Book {
+    id: ID
+    name: String
+    pageCount: Int
+    author: Author
+}
+
+type Author {
+    id: ID
+    firstName: String
+    lastName: String
+}
+
+type PaginatedBooksResult {
+    pageInfo: PageInfo
+    books: [Book]
+}
+
+input OrderByInput {
+    field: String!
+    direction: String!
+}
+
+input PageableInput {
+    pageNumber: Int
+    pageSize: Int
+}
+
+type PaginatedBook {
+    pageInfo: PageInfo
+    books: [Book]
+}
+
+type BookPagination {
+    content: [Book]
+    pageInfo: PageInfo
+}
+
+type PageInfo {
+    currentPage: Int
+    totalPages: Int
+    totalItems: Int
+}
+type Query {
+    bookById(id: ID): Book
+    bookByName(name: String): Book
+    booksByIds(ids: [ID]): [Book]
+    booksOrderByPageCount(orderBy: OrderByInput): [Book]
+    booksByAuthorId(authorId: ID!): [Book]
+    getBooks(page: Int!, size: Int!): BookPagination
+}
